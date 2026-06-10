@@ -21,9 +21,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(cors -> cors.configurationSource(request -> {
+                    var config = new org.springframework.web.cors.CorsConfiguration();
+                    config.setAllowedOrigins(java.util.Arrays.asList(
+                        "http://localhost:3000",
+                        "https://loquacious-gecko-adb26f.netlify.app"
+                    ));
+                    config.setAllowedMethods(java.util.Arrays.asList(
+                        "GET", "POST", "PUT", "DELETE", "OPTIONS"
+                    ));
+                    config.setAllowedHeaders(java.util.Arrays.asList("*"));
+                    config.setAllowCredentials(false);
+                    return config;
+                }))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        // OPTIONS preflight requests allow karo — CORS ke liye zaroori
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/auth/**", "/trains/search", "/trains/all").permitAll()
                         .anyRequest().authenticated()
