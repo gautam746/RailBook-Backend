@@ -1,7 +1,7 @@
 INSERT IGNORE INTO train 
 (train_number, train_name, source, destination, departure_time, arrival_time, available_seats) 
 VALUES
-('12301', 'Rajdhani Express', 'Delhi', 'Mumbai', '16:00', '08:15', 100),
+('12301', 'Rajdhani Express', 'New Delhi', 'Mumbai', '16:00', '08:15', 100),
 ('12302', 'Shatabdi Express', 'Delhi', 'Kolkata', '06:00', '14:30', 120),
 ('12303', 'Duronto Express', 'Delhi', 'Chennai', '20:00', '06:45', 150),
 ('12304', 'Garib Rath', 'Delhi', 'Bangalore', '18:30', '10:15', 130),
